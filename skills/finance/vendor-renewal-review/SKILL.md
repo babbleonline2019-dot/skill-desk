@@ -3,6 +3,22 @@ name: "vendor-renewal-review"
 description: "Review upcoming vendor renewals, flag usage declines, and recommend renew, renegotiate, or cancel."
 department: "Finance"
 owner: "Itamar G."
+manual_minutes: 185
+assisted_minutes: 105
+minutes_saved: 80
+estimate_basis: "Assumes about 10-15 renewals per monthly run, with dashboard access still manual so AI saves less on usage data gathering and more on calculation, synthesis, and drafting."
+estimated_by: "Claude (claude-sonnet-5-5)"
+estimated_on: "2026-10-21"
+estimate_steps: [{"step":"List renewals in 60 days","manual_minutes":25,"assisted_minutes":10},{"step":"Check vendor usage dashboards","manual_minutes":60,"assisted_minutes":40},{"step":"Retrieve prior-year spend","manual_minutes":25,"assisted_minutes":12},{"step":"Calculate usage change, flag declines","manual_minutes":15,"assisted_minutes":3},{"step":"Draft recommendations per vendor","manual_minutes":30,"assisted_minutes":12},{"step":"Draft budget owner notes","manual_minutes":30,"assisted_minutes":8},{"step":"Review and correct AI output","manual_minutes":0,"assisted_minutes":20}]
+confidence: "low"
+confidence_reason: "No department context was provided, and the number of renewals and the dashboard access method are unknown."
+saved_low: 30
+saved_high: 80
+runs_per_month: 1
+runs_reason: "The skill is designed to be run once a month after financial close."
+adoption_share: 0.2
+adoption_reason: "No context pack exists; likely only a few finance staff (such as AP, procurement, or FP&A) handle vendor renewals."
+quality_impact: "Consistent usage comparisons and calculations, fewer missed notice deadlines, and uniform notes for budget owners."
 ---
 
 ## When to use this
