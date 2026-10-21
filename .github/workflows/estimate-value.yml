@@ -1,0 +1,33 @@
+name: Estimate skill value
+
+on:
+  push:
+    paths:
+      - "**/SKILL.md"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  models: read
+
+jobs:
+  estimate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Ask the model to estimate value
+        id: est
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 .github/scripts/estimate_value.py
+
+      - name: Commit estimates
+        if: steps.est.outputs.count != '0'
+        run: |
+          git config user.name "value-estimator"
+          git config user.email "actions@github.com"
+          git add -A
+          git commit -m "Add value estimates (automated)"
+          git pull --rebase
+          git push
